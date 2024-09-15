@@ -148,7 +148,7 @@ For detailed information on all available endpoints, refer to the official [Fina
 
 If a new endpoint is introduced, you can use the flexible `any` method to call it without waiting for an update to this library. Alternatively, you can modify or add to the config files in the [src/config](./src/config) directory to include new endpoints.
 
-**Note**: The methods in this client generally follow the naming style of the FinancialModelingPrep API with camelCase conventions. Check the [src/config](./src/config) directory for the full list of available endpoints and their parameters.
+**Note**: The methods in this client generally follow the naming style of the FinancialModelingPrep API with camelCase conventions. Check the [examples](./examples/README.md) directory for the full list of available endpoints and their parameters.
 
 ### List of All Available Endpoints
 
