@@ -1,4 +1,4 @@
-import FinancialModelingPrepClient from '../src/financialmodelingprep.js';
+import FinancialModelingPrepClient from '../src/index.js';
 import constituents from '../src/config/constituents.js';
 
 describe('FinancialModelingPrepClient', () => {
@@ -123,7 +123,7 @@ describe('FinancialModelingPrepClient', () => {
 
         test('should dynamically call an endpoint without parameters', async () => {
             const version = 'v3';
-            const endpoint = 'company/profile/AAPL';
+            const endpoint = 'company/profile/TICKER';
             await client.any(version, endpoint);
             const expectedUrl = `${version}/${endpoint}`;
             expect(client.fetch).toHaveBeenCalledWith(expectedUrl);

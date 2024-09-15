@@ -26,7 +26,7 @@ try {
 // ----------------------------
 
 // Step 1: Import the FinancialModelingPrepClient class
-import FinancialModelingPrepClient from "../src/financialmodelingprep.js";
+import FinancialModelingPrepClient from "../src/index.js";
 
 // Step 2: Set your API key (or use dotenv as shown above)
 const FMP_API_KEY = process.env.FMP_API_KEY || 'YOUR_API_KEY_HERE';
@@ -35,7 +35,7 @@ const FMP_API_KEY = process.env.FMP_API_KEY || 'YOUR_API_KEY_HERE';
 const fmp = new FinancialModelingPrepClient(FMP_API_KEY);
 
 // Step 4: Use the client to fetch data from the API
-await fmp.treasuryData({ from: '2024-09-13', to: '2024-09-13' })
+await fmp.treasury({ from: '2024-09-13', to: '2024-09-13' })
 
     // Success!
     .then((data) => {

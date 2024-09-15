@@ -2,6 +2,10 @@
 
 A Node.js client for interacting with the [FinancialModelingPrep API](https://financialmodelingprep.com/), providing a wide range of financial data, including market, company, and economic data. This library is designed to make it easy to fetch financial information with simple method calls.
 
+#### Disclaimer
+
+This project is an independent initiative and has no affiliation with FinancialModelingPrep or its web API development. It is provided as a convenient way to interact with the FinancialModelingPrep API at [financialmodelingprep.com](https://financialmodelingprep.com). The library is provided "as is," without warranty of any kind, express or implied. Use this library at your own risk. The author assumes no responsibility for any issues or damages that may arise from using this library.
+
 ## Features
 
 - Access a variety of financial data endpoints (e.g., market data, company profiles, financial statements).
@@ -9,6 +13,8 @@ A Node.js client for interacting with the [FinancialModelingPrep API](https://fi
 - Easy-to-use API methods for quick integration.
 - Support for environment variables for sensitive data (API keys).
 - Comprehensive test coverage for robust functionality.
+- Easily extensible to support new API endpoints.
+- Quickstart examples for easy integration.
 
 ## Table of Contents
 
@@ -75,11 +81,11 @@ const fmpClient = new FinancialModelingPrepClient(process.env.FMP_API_KEY);
 
 ### Example Usage
 
-Fetch the company profile for Apple (AAPL):
+Fetch the company profile for the given symbol.
 
 ```javascript
-// Fetch the company profile for Apple (AAPL)
-fmpClient.companyProfile({ symbol: 'AAPL' })
+// Fetch the company profile for a given symbol
+fmpClient.companyProfile({ symbol: 'TICKER' })
 
     // Success!
     .then(data => {
@@ -134,7 +140,7 @@ This client supports a wide range of endpoints, categorized as follows:
 - **Market Data**: `quote`, `quotes`, `stockMarketGainers`, etc.
 - **Company Data**: `companyProfile`, `stockPeers`, `companyOutlook`, etc.
 - **Financial Statements**: `incomeStatement`, `balanceSheetStatement`, etc.
-- **Economic Data**: `treasuryData`, `economicCalendar`, etc.
+- **Economic Data**: `treasury`, `economicCalendar`, etc.
 - **News and Press Releases**: `stockNews`, `pressReleases`, etc.
 - **Search**: `search`, `searchTicker`, `searchIsin`, etc.
 
@@ -166,7 +172,7 @@ Here are some examples demonstrating how to use various methods provided by the 
 ### Get Treasury Data
 
 ```javascript
-fmpClient.treasuryData({ from: '2024-01-01', to: '2024-12-31' })
+fmpClient.treasury({ from: '2024-01-01', to: '2024-12-31' })
     .then(data => console.log(data))
     .catch(error => console.error(error));
 ```
@@ -174,7 +180,7 @@ fmpClient.treasuryData({ from: '2024-01-01', to: '2024-12-31' })
 ### Search for a Stock
 
 ```javascript
-fmpClient.search({ query: 'Apple' })
+fmpClient.search({ query: 'text' })
     .then(data => console.log(data))
     .catch(error => console.error(error));
 ```

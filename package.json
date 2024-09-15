@@ -1,12 +1,12 @@
 {
   "name": "financialmodelingprep-node",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "types": "./index.d.ts",
-  "main": "./src/financialmodelingprep.js",
+  "main": "./src/index.js",
   "scripts": {
-    "dev": "nodemon ./examples/quickstart.js",
-    "test": "jest --detectOpenHandles",
+    "dev": "nodemon ./examples/__quickstart.js",
+    "test": "jest",
     "test:watch": "nodemon --exec 'jest --watchAll'"
   },
   "repository": {
