@@ -4,7 +4,7 @@ A Node.js client for interacting with the [FinancialModelingPrep API](https://fi
 
 #### Disclaimer
 
-This project is an independent initiative and has no affiliation with FinancialModelingPrep or its web API development. It is provided as a convenient way to interact with the FinancialModelingPrep API at [financialmodelingprep.com](https://financialmodelingprep.com). The library is provided "as is," without warranty of any kind, express or implied. Use this library at your own risk. The author assumes no responsibility for any issues or damages that may arise from using this library.
+This project is an independent initiative and has no affiliation with FinancialModelingPrep or its web API development. It is provided as a convenient way to interact with the API at [financialmodelingprep.com](https://financialmodelingprep.com). The library is provided "as is," without warranty of any kind, express or implied. Use this library at your own risk. The author assumes no responsibility for any issues or damages that may arise from using this library.
 
 ## Features
 
@@ -167,7 +167,7 @@ console.log(endpoints);
 
 ## Examples
 
-Here are some examples demonstrating how to use various methods provided by the client:
+Here are some quick examples of how to use the client. For more examples, [explore the full list](./examples/README.md).
 
 ### Get Treasury Data
 
