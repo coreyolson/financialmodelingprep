@@ -124,7 +124,7 @@ export default class FinancialModelingPrepClient {
      * Dynamic method to fetch data from any endpoint with any version
      *
      * @param {string} version - The API version (e.g., 'v3', 'v4', etc.)
-     * @param {string} endpoint - The endpoint path (e.g., 'treasury', 'company/profile/AAPL')
+     * @param {string} endpoint - The endpoint path (e.g., 'treasury', 'company/profile/ticker')
      * @param {object} [params] - The query parameters to include in the URL
      * @returns {Promise} - A promise that resolves with the fetched data
      */
