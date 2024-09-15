@@ -1,5 +1,5 @@
 {
-  "name": "financialmodelingprep",
+  "name": "financialmodelingprep-node",
   "version": "1.0.0",
   "type": "module",
   "types": "./index.d.ts",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/coreyolson/financialmodelingprep.git"
+    "url": "https://github.com/coreyolson/financialmodelingprep-node.git"
   },
   "author": "Corey Olson",
   "contributors": [
