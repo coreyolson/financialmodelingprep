@@ -1,0 +1,169 @@
+// Configs; i.e., API endpoints by category
+import companies from './config/companies.js';
+import search from './config/search.js';
+import market from './config/market.js';
+import financials from './config/financials.js';
+import metrics from './config/metrics.js';
+import targets from './config/targets.js';
+import news from './config/news.js';
+import reports from './config/reports.js';
+import events from './config/events.js';
+import historical from './config/historical.js';
+import funds from './config/funds.js';
+import instutional from './config/institutional.js';
+import indices from './config/indices.js';
+import commitments from './config/commitments.js';
+import treasury from './config/treasury.js';
+import commodities from './config/commodities.js';
+import constituents from './config/constituents.js';
+import bulk from './config/bulk.js';
+
+// Financial Modeling Prep API Wrapper for Node.js
+export default class FinancialModelingPrepClient {
+
+    /**
+     * Constructor to initialize the client with API key and options
+     * 
+     * @param {string} apiKey - The API key for the Financial Modeling Prep API
+     * @param {object} [userOptions] - The options to customize the client
+     * @param {number} [userOptions.timeout=3000] - The request timeout in milliseconds
+     * @param {string} [userOptions.base='https://financialmodelingprep.com/api/'] - The base URL of the API
+     * @returns {void}
+     */
+    constructor(apiKey, userOptions = {}) {
+
+        // Throw an error if no API key is provided
+        if (!apiKey) throw new Error('API key is required');
+
+        // Define default options
+        const defaultOptions = { timeout: 3000, base: 'https://financialmodelingprep.com/api/' };
+
+        // Merge default options with the provided options
+        Object.assign(this, { apiKey }, defaultOptions, userOptions);
+
+        // Combine all endpoints
+        const allEndpoints = [
+            ...companies,
+            ...market,
+            ...search,
+            ...financials,
+            ...metrics,
+            ...targets,
+            ...news,
+            ...reports,
+            ...events,
+            ...historical,
+            ...funds,
+            ...instutional,
+            ...indices,
+            ...commitments,
+            ...treasury,
+            ...commodities,
+            ...constituents,
+            ...bulk
+        ];
+
+        // Create the endpoints dynamically
+        allEndpoints.forEach(({ version, name, path }) => {
+
+            // Dynamically create methods for each endpoint
+            this[name] = (params = {}) => {
+
+                // Determine the path with or without parameters
+                const url = path(...Object.values(params));
+
+                // Fetch the data with the constructed path
+                return this.fetch(`${version}/${url}`);
+            };
+        });
+    }
+
+    /**
+     * Perform a fetch request with a timeout
+     * 
+     * @param {string} endpoint - The API endpoint
+     * @returns {Promise<Object>} - Parsed JSON data
+     */
+    async fetch(endpoint) {
+
+        // Construct the full URL with the API key
+        const url = `${this.base}${endpoint}${endpoint.includes('?') ? '&' : '?'}apikey=${this.apiKey}`;
+
+        // Return a promise that races between the fetch request and a timeout
+        return Promise.race([
+
+            // Fetch promise
+            fetch(url).then(response => {
+
+                // Throw an error if the response is not OK
+                if (!response.ok) {
+
+                    // Check for 401 Unauthorized
+                    if (response.status === 401) throw new Error('401 Forbidden: Check API Key');
+
+                    // Throw an error with the HTTP status
+                    throw new Error(`HTTP error! Status: ${response.status} at ${url}`);
+                }
+
+                // Return the parsed JSON data
+                return response.json();
+
+            // Fetch Failure
+            }),
+
+            // Timeout promise
+            new Promise((_, reject) =>
+
+                // Reject the promise after the timeout
+                setTimeout(() => reject(new Error(`Request to ${url} timed out`)), this.timeout)
+            )
+        ]);
+    }
+
+    /**
+     * Dynamic method to fetch data from any endpoint with any version
+     *
+     * @param {string} version - The API version (e.g., 'v3', 'v4', etc.)
+     * @param {string} endpoint - The endpoint path (e.g., 'treasury', 'company/profile/AAPL')
+     * @param {object} [params] - The query parameters to include in the URL
+     * @returns {Promise} - A promise that resolves with the fetched data
+     */
+    any(version, endpoint, params = {}) {
+
+        // Construct the query string from params
+        const queryString = Object.entries(params)
+
+            // Filter out undefined values
+            .filter(([_, value]) => value !== undefined)
+
+            // Encode the key-value pairs
+            .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+
+            // Join the key-value pairs with '&'
+            .join('&');
+
+        // Construct the full URL
+        const urlPath = `${version}/${endpoint}${queryString ? `?${queryString}` : ''}`;
+
+        // Fetch the data with the constructed path
+        return this.fetch(urlPath);
+    }
+
+    /**
+     * Returns an array of all dynamically created method names
+     *
+     * @returns {string[]} - An array of method names
+     */
+    getAllEndpoints() {
+
+        // Get all property names of the current instance
+        const properties = Object.getOwnPropertyNames(this);
+
+        // Filter out these method names
+        return properties.filter(name =>
+            
+            // Check if the property is a function and is not inherited
+            typeof this[name] === 'function' && this.hasOwnProperty(name)
+        );
+    }
+}

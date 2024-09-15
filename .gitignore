@@ -1,0 +1,34 @@
+# Node.js dependencies
+/node_modules
+
+# Build and production files
+/dist
+/build
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# Testing
+/coverage
+/jest
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
+*.swpx
+*~

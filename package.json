@@ -1,0 +1,45 @@
+{
+  "name": "financialmodelingprep-node",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./src/financialmodelingprep.js",
+  "scripts": {
+    "dev": "nodemon ./examples/quickstart.js",
+    "test": "jest --detectOpenHandles",
+    "test:watch": "nodemon --exec 'jest --watchAll'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coreyolson/financialmodelingprep-node.git"
+  },
+  "author": "Corey Olson",
+  "contributors": [
+    "Corey Olson (https://coreyolson.com/)"
+  ],
+  "keywords": [],
+  "license": "MIT",
+  "description": "A Node.js client for the FinancialModelingPrep API",
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "babel-jest": "^29.7.0",
+    "dotenv": "^16.4.5",
+    "jest": "^29.7.0",
+    "jest-fetch-mock": "^3.0.3",
+    "nodemon": "^3.1.4"
+  },
+  "jest": {
+    "verbose": false,
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "html",
+      "text"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  }
+}
