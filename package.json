@@ -1,7 +1,8 @@
 {
-  "name": "financialmodelingprep-node",
+  "name": "financialmodelingprep",
   "version": "1.0.0",
   "type": "module",
+  "types": "./index.d.ts",
   "main": "./src/financialmodelingprep.js",
   "scripts": {
     "dev": "nodemon ./examples/quickstart.js",
@@ -10,13 +11,34 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/coreyolson/financialmodelingprep-node.git"
+    "url": "https://github.com/coreyolson/financialmodelingprep.git"
   },
   "author": "Corey Olson",
   "contributors": [
     "Corey Olson (https://coreyolson.com/)"
   ],
-  "keywords": [],
+  "keywords": [
+    "financial",
+    "api",
+    "nodejs",
+    "financial-modeling-prep",
+    "finance",
+    "stock-market",
+    "financial-data",
+    "investing",
+    "market-data",
+    "stocks",
+    "economics",
+    "financial-statements",
+    "cryptocurrency",
+    "forex",
+    "etf",
+    "mutual-fund",
+    "market-analysis",
+    "company-profiles",
+    "economic-data",
+    "financial-ratios"
+  ],
   "license": "MIT",
   "description": "A Node.js client for the FinancialModelingPrep API",
   "devDependencies": {
@@ -41,5 +63,8 @@
     "presets": [
       "@babel/preset-env"
     ]
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
