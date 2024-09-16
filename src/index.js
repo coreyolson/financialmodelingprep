@@ -21,6 +21,9 @@ import bulk from './config/bulk.js';
 // Financial Modeling Prep API Wrapper for Node.js
 export default class FinancialModelingPrepClient {
 
+    // Private
+    #apiKey;
+
     /**
      * Constructor to initialize the client with API key and options
      * 
@@ -32,14 +35,20 @@ export default class FinancialModelingPrepClient {
      */
     constructor(apiKey, userOptions = {}) {
 
+        // Hardcode Domain Base
+        this.domain = 'https://financialmodelingprep.com';
+
         // Throw an error if no API key is provided
         if (!apiKey) throw new Error('API key is required');
 
         // Define default options
-        const defaultOptions = { timeout: 3000, base: 'https://financialmodelingprep.com/api/' };
+        const defaultOptions = { timeout: 3000, base: '/api/' };
 
         // Merge default options with the provided options
-        Object.assign(this, { apiKey }, defaultOptions, userOptions);
+        Object.assign(this, defaultOptions, userOptions);
+
+        // Store API Key (private)
+        this.#apiKey = apiKey;
 
         // Combine all endpoints
         const allEndpoints = [
@@ -87,8 +96,11 @@ export default class FinancialModelingPrepClient {
     async fetch(endpoint) {
 
         // Construct the full URL with the API key
-        const url = `${this.base}${endpoint}${endpoint.includes('?') ? '&' : '?'}apikey=${this.apiKey}`;
+        const url = `${this.domain}${this.base}${endpoint}${endpoint.includes('?') ? '&' : '?'}apikey=${this.#apiKey}`;
 
+        // Ensure HTTPS to avoid leaking the API key
+        if (!url.startsWith('https')) throw new Error('URL must be HTTPS');
+        
         // Return a promise that races between the fetch request and a timeout
         return Promise.race([
 
