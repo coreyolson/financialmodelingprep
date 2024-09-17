@@ -1,6 +1,6 @@
 {
   "name": "financialmodelingprep-node",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "types": "./index.d.ts",
   "main": "./dist/index.cjs.js",

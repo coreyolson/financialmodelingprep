@@ -1,0 +1,15 @@
+# Node.js 
+node_modules/
+
+# Development
+coverage/
+jest/
+.gitignore
+*.log
+*.env
+
+# Source
+src/
+
+# Documentation
+examples/
