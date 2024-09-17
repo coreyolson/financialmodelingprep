@@ -114,7 +114,7 @@ export default class FinancialModelingPrepClient {
                     if (response.status === 401) throw new Error('401 Forbidden: Check API Key');
 
                     // Throw an error with the HTTP status
-                    throw new Error(`HTTP error! Status: ${response.status} at ${url}`);
+                    throw new Error(`HTTP error! Status: ${response.status}`);
                 }
 
                 // Return the parsed JSON data
@@ -127,7 +127,7 @@ export default class FinancialModelingPrepClient {
             new Promise((_, reject) =>
 
                 // Reject the promise after the timeout
-                setTimeout(() => reject(new Error(`Request to ${url} timed out`)), this.timeout)
+                setTimeout(() => reject(new Error(`Request timed out`)), this.timeout)
             )
         ]);
     }

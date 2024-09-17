@@ -17,9 +17,8 @@ describe('FinancialModelingPrepClient', () => {
 
     describe('constructor()', () => {
         test('should initialize with default options', () => {
-            expect(client.apiKey).toBe(apiKey);
             expect(client.timeout).toBe(3000);
-            expect(client.base).toBe('https://financialmodelingprep.com/api/');
+            expect(client.base).toBe('/api/');
         });
 
         test('should override default options with user options', () => {
@@ -31,6 +30,10 @@ describe('FinancialModelingPrepClient', () => {
 
         test('should throw an error if no API key is provided', () => {
             expect(() => new FinancialModelingPrepClient()).toThrow('API key is required');
+        });
+
+        test('should store the API key privately', () => {
+            expect(client.apiKey).toBeUndefined();
         });
     });
 
@@ -78,9 +81,7 @@ describe('FinancialModelingPrepClient', () => {
                 status: 404, // Example status
                 json: jest.fn().mockResolvedValue({}),
             });
-            await expect(networkFailureClient.fetch(endpoint)).rejects.toThrow(
-                `HTTP error! Status: 404 at ${networkFailureClient.base}${endpoint}&apikey=${networkFailureClient.apiKey}`
-            );
+            await expect(networkFailureClient.fetch(endpoint)).rejects.toThrow(`HTTP error! Status: 404`);
         });
         test('should throw error if json parsing fails', async () => {
             const networkFailureClient = new FinancialModelingPrepClient(apiKey);
@@ -95,19 +96,24 @@ describe('FinancialModelingPrepClient', () => {
             const networkFailureClient = new FinancialModelingPrepClient(apiKey, { timeout: 0 });
             const endpoint = 'v4/treasury?from=2024-09-13&to=2024-09-14';
             global.fetch.mockImplementation(() => new Promise(() => {}));
-            await expect(networkFailureClient.fetch(endpoint)).rejects.toThrow(
-                `Request to ${networkFailureClient.base}${endpoint}&apikey=${networkFailureClient.apiKey} timed out`
-            );
+            await expect(networkFailureClient.fetch(endpoint)).rejects.toThrow(`Request timed out`);
         });
         test('should append ?apikey when endpoint has no query parameters', async () => {
             const client = new FinancialModelingPrepClient(apiKey);
             const endpoint = 'v4/marketdata';
-            const expectedUrl = `${client.base}${endpoint}?apikey=${client.apiKey}`;
+            const expectedUrl = `${client.domain}${client.base}${endpoint}?apikey=${apiKey}`;
             const expectedResponse = { data: 'someData' };
             global.fetch.mockResolvedValue({ ok: true, json: async () => expectedResponse });
             const result = await client.fetch(endpoint);
             expect(global.fetch).toHaveBeenCalledWith(expectedUrl);
             expect(result).toEqual(expectedResponse);
+        });
+        test('should ensure HTTPS in the URL', async () => {
+            // Mock the client.domain to be 'http://example.com'
+            const client = new FinancialModelingPrepClient(apiKey, { domain: 'http://financialmodelingprep.com' });
+            const endpoint = 'v4/marketdata';
+            const expectedUrl = `${client.domain}${client.base}${endpoint}?apikey=${apiKey}`;
+            await expect(client.fetch(endpoint)).rejects.toThrow('URL must be HTTPS');
         });
     });
 

@@ -1,13 +1,22 @@
 {
   "name": "financialmodelingprep-node",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "types": "./index.d.ts",
-  "main": "./src/index.js",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "exports": {
+    "require": "./dist/index.cjs.js",
+    "import": "./dist/index.esm.js"
+  },
   "scripts": {
     "dev": "nodemon ./examples/__quickstart.js",
     "test": "jest",
-    "test:watch": "nodemon --exec 'jest --watchAll'"
+    "test:watch": "nodemon --exec 'jest --watchAll'",
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "babel src --out-dir dist --extensions '.js' --out-file-extension '.esm.js'",
+    "build:cjs": "babel src --out-dir dist --extensions '.js' --out-file-extension '.cjs.js' --plugins @babel/plugin-transform-modules-commonjs",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -43,6 +52,7 @@
   "description": "A Node.js client for the FinancialModelingPrep API",
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@babel/plugin-transform-modules-commonjs": "^7.24.8",
     "@babel/preset-env": "^7.25.4",
     "babel-jest": "^29.7.0",
     "dotenv": "^16.4.5",
@@ -62,7 +72,14 @@
   "babel": {
     "presets": [
       "@babel/preset-env"
-    ]
+    ],
+    "env": {
+      "cjs": {
+        "plugins": [
+          "@babel/plugin-transform-modules-commonjs"
+        ]
+      }
+    }
   },
   "engines": {
     "node": ">=18.0.0"

@@ -23,6 +23,7 @@ This project is an independent initiative and has no affiliation with FinancialM
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
 - [Examples](#examples)
+- [Build Process](#build-process)
 - [Testing](#testing)
 - [Contributing](#contributing)
 - [License](#license)
@@ -192,6 +193,16 @@ fmpClient.stockMarketGainers()
     .then(data => console.log(data))
     .catch(error => console.error(error));
 ```
+
+## Build Process
+
+The source code in this package is written in ES modules (ESM) and is compiled into both ESM and CommonJS (CJS) formats for distribution. The compiled files are located in the `dist` directory. To build the package, run:
+
+```bash
+npm run build
+```
+
+**Note:** The `dist` directory is included in the npm package but excluded from the GitHub repository.
 
 ## Testing
 
