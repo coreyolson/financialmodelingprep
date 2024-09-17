@@ -1,13 +1,12 @@
 {
   "name": "financialmodelingprep-node",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "type": "module",
   "types": "./index.d.ts",
-  "main": "./dist/index.cjs.js",
-  "module": "./dist/index.esm.js",
+  "main": "./dist/financialmodelingprep.bundle.js",
   "exports": {
-    "require": "./dist/index.cjs.js",
-    "import": "./dist/index.esm.js"
+    "require": "./dist/financialmodelingprep.bundle.js",
+    "import": "./dist/financialmodelingprep.bundle.js"
   },
   "scripts": {
     "test": "jest",
