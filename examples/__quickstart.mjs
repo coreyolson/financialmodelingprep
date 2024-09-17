@@ -26,7 +26,7 @@ try {
 // ----------------------------
 
 // Step 1: Import the FinancialModelingPrepClient class
-import FinancialModelingPrepClient from "../src/index.js";
+import FinancialModelingPrepClient from "../src/index.mjs";
 
 // Step 2: Set your API key (or use dotenv as shown above)
 const FMP_API_KEY = process.env.FMP_API_KEY || 'YOUR_API_KEY_HERE';

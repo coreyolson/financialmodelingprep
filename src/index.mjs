@@ -1,22 +1,22 @@
 // Configs; i.e., API endpoints by category
-import companies from './config/companies.js';
-import search from './config/search.js';
-import market from './config/market.js';
-import financials from './config/financials.js';
-import metrics from './config/metrics.js';
-import targets from './config/targets.js';
-import news from './config/news.js';
-import reports from './config/reports.js';
-import events from './config/events.js';
-import historical from './config/historical.js';
-import funds from './config/funds.js';
-import instutional from './config/institutional.js';
-import indices from './config/indices.js';
-import commitments from './config/commitments.js';
-import treasury from './config/treasury.js';
-import commodities from './config/commodities.js';
-import constituents from './config/constituents.js';
-import bulk from './config/bulk.js';
+import companies from './config/companies.mjs';
+import search from './config/search.mjs';
+import market from './config/market.mjs';
+import financials from './config/financials.mjs';
+import metrics from './config/metrics.mjs';
+import targets from './config/targets.mjs';
+import news from './config/news.mjs';
+import reports from './config/reports.mjs';
+import events from './config/events.mjs';
+import historical from './config/historical.mjs';
+import funds from './config/funds.mjs';
+import instutional from './config/institutional.mjs';
+import indices from './config/indices.mjs';
+import commitments from './config/commitments.mjs';
+import treasury from './config/treasury.mjs';
+import commodities from './config/commodities.mjs';
+import constituents from './config/constituents.mjs';
+import bulk from './config/bulk.mjs';
 
 // Financial Modeling Prep API Wrapper for Node.js
 export default class FinancialModelingPrepClient {

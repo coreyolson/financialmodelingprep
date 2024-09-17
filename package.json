@@ -1,17 +1,16 @@
 {
   "name": "financialmodelingprep-node",
   "version": "1.0.6",
-  "type": "module",
   "types": "./index.d.ts",
   "main": "./dist/financialmodelingprep.bundle.js",
+  "module": "./dist/financialmodelingprep.bundle.js",
   "exports": {
-    "require": "./dist/financialmodelingprep.bundle.js",
-    "import": "./dist/financialmodelingprep.bundle.js"
+    ".": "./dist/financialmodelingprep.bundle.js"
   },
   "scripts": {
     "test": "jest",
     "test:watch": "nodemon --exec 'jest --watchAll'",
-    "dev": "nodemon ./examples/__quickstart.js",
+    "dev": "nodemon ./examples/__quickstart.mjs",
     "build": "rimraf dist && rollup -c",
     "prepublishOnly": "npm run build"
   },

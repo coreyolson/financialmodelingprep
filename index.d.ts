@@ -1,4 +1,4 @@
-declare module 'financialmodelingprep' {
+declare module 'financialmodelingprep-node' {
     export default class FinancialModelingPrepClient {
         constructor(apiKey: string, userOptions?: { timeout?: number, base?: string });
         fetch(endpoint: string): Promise<any>;

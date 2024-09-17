@@ -3,7 +3,7 @@ node_modules/
 
 # Development
 coverage/
-jest/
+tests/
 .gitignore
 *.log
 *.env
