@@ -1,6 +1,6 @@
 {
   "name": "financialmodelingprep-node",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "type": "module",
   "types": "./index.d.ts",
   "main": "./dist/index.cjs.js",
@@ -10,12 +10,10 @@
     "import": "./dist/index.esm.js"
   },
   "scripts": {
-    "dev": "nodemon ./examples/__quickstart.js",
     "test": "jest",
     "test:watch": "nodemon --exec 'jest --watchAll'",
-    "build": "npm run build:esm && npm run build:cjs",
-    "build:esm": "babel src --out-dir dist --extensions '.js' --out-file-extension '.esm.js'",
-    "build:cjs": "babel src --out-dir dist --extensions '.js' --out-file-extension '.cjs.js' --plugins @babel/plugin-transform-modules-commonjs",
+    "dev": "nodemon ./examples/__quickstart.js",
+    "build": "rimraf dist && rollup -c",
     "prepublishOnly": "npm run build"
   },
   "repository": {
@@ -54,11 +52,17 @@
     "@babel/core": "^7.25.2",
     "@babel/plugin-transform-modules-commonjs": "^7.24.8",
     "@babel/preset-env": "^7.25.4",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
     "babel-jest": "^29.7.0",
     "dotenv": "^16.4.5",
     "jest": "^29.7.0",
     "jest-fetch-mock": "^3.0.3",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.21.3"
   },
   "jest": {
     "verbose": false,
