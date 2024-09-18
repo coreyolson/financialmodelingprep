@@ -1,6 +1,6 @@
 {
   "name": "financialmodelingprep-node",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "types": "./index.d.ts",
   "main": "./dist/financialmodelingprep.bundle.js",
   "module": "./dist/financialmodelingprep.bundle.js",

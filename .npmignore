@@ -8,6 +8,9 @@ tests/
 *.log
 *.env
 
+# Build
+rollup.config.js
+
 # Source
 src/
 

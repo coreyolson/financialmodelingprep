@@ -12,7 +12,7 @@ fmpClient.any('v4', 'treasury', { from: '2024-09-13', to: '2024-09-13' })
 ```
 ## Available Categories
 
-Select a category below to view available endpoints and see [Quick Start Code](./__quickstart.js) for more information.
+Select a category below to view available endpoints and see [Quick Start Code](./__quickstart.mjs) for more information.
 
 - [Bulk](./bulk.md)
 - [Commitments](./commitments.md)
